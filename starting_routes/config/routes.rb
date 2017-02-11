@@ -8,5 +8,7 @@ Rails.application.routes.draw do
 
   get '/add', :controller => 'users', :action => 'add'
 
+  get '/add/:num', :controller => 'users', :action => 'add'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

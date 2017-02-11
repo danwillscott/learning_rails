@@ -1,12 +1,18 @@
 class UsersController < ApplicationController
 
   def index
+
     @index_data = 'is the session id'
   end
 
   def new
+    if session[:id]
+
     @data = 'Hello CodingDojo!'
     session[:id] += rand 1000
+    else
+      session[:id] = 0
+    end
   end
 
   def reset
@@ -16,11 +22,11 @@ class UsersController < ApplicationController
 
   def add
     if session[:id]
-      session[:id] += 100
+      session[:id] += params[:num].to_i
     else
-      session[:id] = 1
+      session[:id] = 0
     end
-    redirect_back fallback_location:'/'
+    redirect_to '/'
   end
 
 end
