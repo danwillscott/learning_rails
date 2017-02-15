@@ -1,0 +1,136 @@
+<br>
+<div class="notice"><%= flash[:notice] %></div>
+<div class="row"></div>
+<div class="row"></div>
+<div class=" large">
+  <div class="card-content">
+    <div class="row">
+      <div class="col s6">
+        <a href="/" class="btn waves-effect waves-light" type="submit" name="action">Return Home
+          <i class="material-icons"></i>
+        </a>
+      </div>
+    </div>
+    <table class="highlight centered responsive-table">
+      <thead>
+      <tr>
+        <th data-field="first_name">Category</th>
+        <th data-field="last_name">Name</th>
+        <th data-field="Email">Description</th>
+        <th data-field="id">Price</th>
+        <th data-field="Action">Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><%= @product.category %></td>
+        <td><%= @product.name  %></td>
+        <td> <%= @product.description %></td>
+        <td><%= @product.price %></td>
+        <td><a class="waves-effect waves-light btn red" href="#modal1">Delete?</a></td>
+      </tr>
+      </tbody>
+    </table>
+    <table class="highlight centered responsive-table">
+      <thead>
+      <tr>
+        <th data-field="first_name">Comments</th>
+        <th data-field="first_name">Remove</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.comment %></td>
+        <td><a class="waves-effect waves-light btn red" href="#comment<%= comment.id %>">Delete?</a></td>
+            <div id="comment<%= comment.id %>" class="modal">
+              <div class="modal-content">
+                <h4 class="">WARNING!</h4><hr><b>You want to delete this comment?</b>
+                <ul><li>Name: <%= comment.comment  %></li></ul>
+              </div>
+              <div class="modal-footer">
+                <form method="post" action="/delete_comment<%= comment.id %>" class="col s5">
+                  <input type="hidden" name="_method" value="DELETE">
+                  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                  <input name="comment_id" type="hidden" value="<%= comment.id %>">
+                  <button class="btn waves-effect waves-light red" type="submit" name="action">Delete
+                    <i class="material-icons">delete</i>
+                  </button>
+                </form>
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">No</a>
+              </div>
+            </div>
+
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <% if flash[:delete] %>
+        <div id="card-alert" class="card red">
+          <div class="card-content center white-text">
+            <p>DANGER : <%= flash[:delete] %></p>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <h5>Post A Comment On this product</h5>
+  <% if flash[:comment] %>
+      <div id="card-alert" class="card yellow">
+        <div class="card-content center black-text">
+          <%= flash[:comment] %>
+        </div>
+      </div>
+  <% end %>
+  <form method="post" action="new_comment<%= @product.id %>" class="col s6">
+    <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token"/>
+    <div class="row">
+      <div class="input-field col s12">
+        <textarea id="textarea1" name="comment" class="materialize-textarea"></textarea>
+        <label for="textarea1">Comment</label>
+          <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+              <i class="material-icons right">send</i>
+            <!--<i class="material-icons">rowing</i>-->
+            </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h4 class="">WARNING!</h4>
+    <hr>
+    <b>You are about to delete</b>
+    <ul>
+      <li>Name: <%= @product.name  %></li>
+      <li>Category: <%= @product.category  %></li>
+      <li>Description: <%= @product.description  %></li>
+      <li>Price: <%= @product.price  %></li>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <form method="post" action="/delete_product<%= @product.id %>" class="col s5">
+      <input type="hidden" name="_method" value="DELETE">
+      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+      <input name="user_id" type="hidden" value="<%= @product.id %>">
+      <button class="btn waves-effect waves-light red" type="submit" name="action">delete
+        <i class="material-icons"></i>
+      </button>
+    </form>
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">No</a>
+  </div>
+</div>
+<script>
+    $(document).ready(function(){
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal').modal();
+    });
+</script>
+
+
+

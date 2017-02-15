@@ -1,0 +1,2 @@
+module GoldNinjasHelper
+end

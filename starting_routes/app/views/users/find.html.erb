@@ -1,0 +1,60 @@
+<nav>
+  <div class="nav-wrapper">
+    <a class="brand-logo center">Welcome</a>
+    <ul id="nav-mobile" class="left hide-on-med-and-down">
+    </ul>
+  </div>
+</nav>
+
+
+<div class="notice"><%= flash[:notice] %></div>
+
+<div class="row"></div>
+<div class="row"></div>
+<div class=" large">
+  <div class="card-content">
+    <div class="row">
+      <div class="col s6">
+        <a href="/new" class="btn waves-effect waves-light" type="submit" name="action">
+          <i class="material-icons">New User Page</i>
+        </a>
+        <a href="/" class="btn waves-effect waves-light" type="submit" name="action">
+          <i class="material-icons">Return Home</i>
+        </a>
+
+      </div>
+      <div class="col s4"> Total Friends <%=  %></div>
+    </div>
+    <table class="highlight centered responsive-table">
+      <thead>
+      <tr>
+        <th data-field="first_name">First Name</th>
+        <th data-field="last_name">Last Name</th>
+        <th data-field="Email">Email Address</th>
+        <th data-field="id">ID</th>
+        <th data-field="Action">Edit</th>
+      </tr>
+      </thead>
+      <tbody>
+      <%	@users.each do |user|  %>
+          <tr>
+            <td><%= user.first_name  %></td>
+            <td> <%= user.last_name %></td>
+            <td><%= user.email %></td>
+            <td><%= user.id %></td>
+            <td><a href="/delete<%= user.id %>" class="btn waves-effect waves-light red">Delete</a></td>
+          </tr>
+      <%	end  %>
+      </tbody>
+    </table>
+    <% if flash[:delete] %>
+        <div id="card-alert" class="card red">
+          <div class="card-content center white-text">
+            <p>DANGER : <%= flash[:delete] %></p>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+

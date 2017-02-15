@@ -1,0 +1,90 @@
+<nav>
+  <div class="nav-wrapper">
+    <a class="brand-logo center">Ninja Gold</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <a href="/rest">Reset</a>
+    </ul>
+    <ul id="nav-mobile" class="left hide-on-med-and-down">
+      <i>You have <%=	 session[:gold] %> gold</i>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <div class="row">
+    <div class="col s3 m3 center">
+      <div class="card-panel green">
+        <span class="white-text">
+          Farm<br>
+          (10-20 gold)<br><br>
+          <form action="/gold" method="post">
+            <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token"/>
+            <input type="hidden" name="gold" value="1">
+            <button class="btn waves-effect waves-light" type="submit" name="action">
+              <i class="material-icons right">Find Gold!</i>
+            </button>
+          </form>
+        </span>
+      </div>
+    </div>
+    <div class="col s3 m3 center">
+      <div class="card-panel green">
+        <span class="white-text">
+          Cave<br>
+          (5-10 gold)<br><br>
+          <form action="/gold" method="post">
+            <input type="hidden"  value="<%= form_authenticity_token %>" name="authenticity_token"/>
+            <input type="hidden" name="gold" value="2">
+            <button class="btn waves-effect waves-light" type="submit" name="action">
+              <i class="material-icons right">Find Gold!</i>
+            </button>
+          </form>
+        </span>
+      </div>
+    </div>
+    <div class="col s3 m3 center">
+      <div class="card-panel green">
+        <span class="white-text">
+          House<br>
+          (2-5 gold)<br><br>
+          <form action="/gold" method="post">
+            <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token"/>
+            <button class="btn waves-effect waves-light" type="submit" name="action">
+              <input type="hidden" name="gold" value="3">
+              <i class="material-icons right">Find Gold!</i>
+            </button>
+          </form>
+        </span>
+      </div>
+    </div>
+    <div class="col s3 m3 center">
+      <div class="card-panel green">
+        <span class="white-text">
+          Casino<br>
+          (Win or lose 50 gold)<br><br>
+          <form action="/gold" method="post">
+            <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token"/>
+            <input type="hidden" name="gold" value="4">
+            <button class="btn waves-effect waves-light" type="submit" name="action">
+              <i class="material-icons right">Find Gold!</i>
+            </button>
+          </form>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col s12 m12">
+      <div class="card-panel white">
+        <span class="black-text">
+          Activities:<br>
+          <%	session[:activity].each do |log| %>
+          <%=	 log %><br>
+          <%	 end  %>
+        </span>
+      </div>
+    </div>
+  </div>
+  <%= flash[:error] %>
+</div>
+

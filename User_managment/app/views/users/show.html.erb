@@ -1,0 +1,78 @@
+<nav>
+  <div class="nav-wrapper">
+    <a class="brand-logo center">Showing User</a>
+    <ul id="nav-mobile" class="left hide-on-med-and-down">
+    </ul>
+  </div>
+</nav>
+<div class="notice"><%= flash[:notice] %></div>
+<div class="row"></div>
+<div class="row"></div>
+<div class=" large">
+  <div class="card-content">
+    <div class="row">
+      <div class="col s6">
+        <a href="/" class="btn waves-effect waves-light" type="submit" name="action">Return Home
+          <i class="material-icons"></i>
+        </a>
+      </div>
+    </div>
+    <table class="highlight centered responsive-table">
+      <thead>
+      <tr>
+        <th data-field="first_name">First Name</th>
+        <th data-field="last_name">Last Name</th>
+        <th data-field="Email">Email Address</th>
+        <th data-field="id">ID</th>
+        <th data-field="Action">Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td><%= @user.first_name  %></td>
+            <td> <%= @user.last_name %></td>
+            <td><%= @user.email %></td>
+            <td><%= @user.id %></td>
+            <td><a class="waves-effect waves-light btn red" href="#modal1">Delete?</a></td>
+          </tr>
+      </tbody>
+    </table>
+    <% if flash[:delete] %>
+        <div id="card-alert" class="card red">
+          <div class="card-content center white-text">
+            <p>DANGER : <%= flash[:delete] %></p>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h4 class="">WARNING!</h4>
+    <hr>
+    <b>You are about to delete</b>
+    <ul>
+      <li>First Name: <%= @user.first_name  %></li>
+      <li>Last Name: <%= @user.last_name  %></li>
+      <li>Email: <%= @user.email  %></li>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <form method="post" action="/delete<%= @user.id %>" class="col s5">
+      <input type="hidden" name="_method" value="DELETE">
+      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+      <input name="user_id" type="hidden" value="<%= @user.id %>">
+      <button class="btn waves-effect waves-light red" type="submit" name="action">delete
+        <i class="material-icons"></i>
+      </button>
+    </form>
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">No</a>
+  </div>
+</div>
+<script>
+  $(document).ready(function(){
+  // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+  $('.modal').modal();
+  });
+</script>

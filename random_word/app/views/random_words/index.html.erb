@@ -1,0 +1,13 @@
+<div>
+  <h1>Here is a random word</h1>
+  <h4> Number of attempts <%= session[:times] %></h4>
+<%= @ran_word %>
+  <br><br>
+  <form action="/">
+  <button>New Word</button>
+  </form>
+
+  <form action="/clear">
+  <button>Reset</button>
+  </form>
+</div>

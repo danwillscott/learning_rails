@@ -1,0 +1,22 @@
+<h1>Welcome to the Great Number Game</h1>
+<p>I am thinking of a number from 1-100</p>
+<p>Take a Guess!</p>
+<p>hint the number is <%= session[:number] %></p>
+<%= flash[:low_high] %>
+<% if !session[:win] %>
+
+  <form method="post" action="/guess">
+    <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token"/>
+    <label> Guess
+      <input name="guess" type="text">
+      <input type="submit">
+    </label>
+  </form>
+    <% end %>
+<br><br>
+<% if session[:win]%>
+  <%= %>
+<a href="/reset">Start over!</a>
+<% end %>
+
+<input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token"/>

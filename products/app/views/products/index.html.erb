@@ -1,0 +1,47 @@
+<br>
+<div class=" large">
+  <div class="card-content">
+    <div class="row">
+      <div class="col s4"><h4>Total Products <%=	 @products.count %></h4> </div>
+    </div>
+    <table class="highlight centered responsive-table">
+      <thead>
+      <tr>
+        <th data-field="first_name">Category</th>
+        <th data-field="first_name">Name</th>
+        <th data-field="last_name">Description</th>
+        <th data-field="Email">Price</th>
+        <th data-field="id">ID</th>
+        <th data-field="Action">Show More</th>
+        <th data-field="Action">Edit / Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+      <%	@products.each do |product|  %>
+          <tr>
+            <td><%= product.category  %></td>
+            <td><%= product.name  %></td>
+            <td> <%= product.description %></td>
+            <td><%= product.price %></td>
+            <td><%= product.id %></td>
+            <td><a href="/show<%= product.id %>" class="btn waves-effect waves-light blue">Show</a></td>
+            <td><a href="/edit<%= product.id %>" class="btn waves-effect waves-light green">Edit</a></td>
+
+          </tr>
+      <%	end  %>
+      </tbody>
+    </table>
+    <% if flash[:deleted] %>
+        <div id="card-alert" class="card yellow">
+          <div class="card-content center black-text">
+            You Have Deleted The Fallowing User
+            <ul>
+              <li>Name: <%= flash[:deleted]['name'] %></li>
+              <li>Category: <%= flash[:deleted]['category'] %></li>
+              <li>Price: <%= flash[:deleted]['price'] %> </li>
+            </ul>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>

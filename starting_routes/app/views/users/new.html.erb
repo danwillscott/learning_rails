@@ -1,26 +1,76 @@
-<div class="a">Add a new user</div>
-<div class="container">
-<div class="row">
-  <form class="col s12">
+<nav>
+  <div class="nav-wrapper">
+    <a class="brand-logo center">Welcome</a>
+    <ul id="nav-mobile" class="left hide-on-med-and-down">
+    </ul>
+  </div>
+</nav>
+
+<div class="row"></div>
+<a href="/" class="btn waves-effect waves-light" type="submit" name="action">
+  <i class="material-icons">Return Home</i>
+</a>
+<div class="card large">
+  <div class="card-content">
     <div class="row">
-      <div class="input-field col s6">
-        <input placeholder="Placeholder" id="first_name" type="text" class="validate">
-        <label for="first_name">First Name</label>
-      </div>
-      <div class="input-field col s6">
-        <input id="last_name" type="text" class="validate">
-        <label for="last_name">Last Name</label>
-      </div>
+      <form method="post" action="/add" class="col s12">
+        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+        <div class="row">
+          <div class="input-field col s6">
+            <input placeholder="Placeholder" name="first_name" type="text" class="validate">
+            <label for="first_name">First Name</label>
+
+          </div>
+          <div class="input-field col s4">
+            <% if flash[:last_name] %>
+                <div id="card-alert" class="card red">
+                  <div class="card-content center white-text">
+                    <p>Sorry : <%= flash[:last_name] %></p>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+          </div>
+          <div class="row">
+          <div class="input-field col s6">
+            <input name="last_name" type="text" class="validate">
+            <label for="last_name">Last Name</label>
+          </div>
+          <div class="input-field col s4">
+            <% if flash[:last_name] %>
+                <div id="card-alert" class="card red">
+                  <div class="card-content center white-text">
+                    <p>Sorry : <%= flash[:last_name] %></p>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <input name="email" type="email" class="validate">
+            <label for="email">Email</label>
+          </div>
+          <div class="input-field col s4">
+            <% if flash[:email] %>
+                <div id="card-alert" class="card red">
+                  <div class="card-content center white-text">
+                    <p>Sorry : <%= flash[:email] %></p>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit" name="action">
+          <i class="material-icons">Add User</i>
+        </button>
+
+       <div class="center">
+       </div>
+      </form>
     </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="email" type="email" class="validate">
-        <label for="email">Email</label>
-      </div>
-    </div>
-    <button class="btn waves-effect waves-light" type="submit" name="action">
-      <i class="material-icons right">Add User</i>
-    </button>
-  </form>
+  </div>
 </div>
-</div>
+
+
+
