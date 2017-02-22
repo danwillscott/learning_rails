@@ -36,6 +36,8 @@ gem 'footnotes'
 gem 'rails-footnotes'
 gem 'materialize-sass'
 gem 'rspec-rails'
+gem 'capybara'
+gem 'selenium-webdriver'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

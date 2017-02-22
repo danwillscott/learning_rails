@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   it 'should validate ALL Fields on save' do
-    user = User.new(name:'Dan', pet_name:'Gaia', age:'30', pet_age: 5)
+    user = User.new(name:'Dan', pet_name:'Gaia', age:30, pet_age: 5)
     expect(user.save).to eq(true)
   end
 

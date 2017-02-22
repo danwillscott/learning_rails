@@ -3,5 +3,6 @@ class User < ApplicationRecord
   validates :name, :presence => true, uniqueness: true
   validates :budget, :numericality => { :only_integer => true }
   validates :budget, :numericality => { :greater_than => 100 }
+  validates :budget, :numericality => { :less_than => 1000 }
 
 end

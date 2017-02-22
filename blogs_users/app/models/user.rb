@@ -8,4 +8,4 @@ class User < ApplicationRecord
   self
 end
 
-Blog.first
+
